@@ -1,10 +1,7 @@
 [
     {
-        "name": "pranav",
-        "password": "sawant"
-    },
-    {
-        "name": "hello ",
-        "password": "hey jnnfenfe"
-    }
+  "name": "Pranav Sawant",
+  "email": "pranav@example.com",
+  "message": "Updated JSON data from Pranav_new"
+}
 ]
