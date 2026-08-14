@@ -8,6 +8,7 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 
 client = pymongo.MongoClient(MONGO_URI)
+db = client["mydatabase"]
 collection = db["mycollection"]
 
 app = Flask(__name__)
@@ -16,7 +17,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.todo('/todo')
+@app.route('/todo')
 def todo():
     return render_template('to-do.html')
 
@@ -49,7 +50,7 @@ def submit_todo_item():
     try:
         form_data =dict(request.form)
         collection.insert_one(form_data)
-        return:"Todo submited successfully "
+        return"Todo submited successfully "
     except Exception as e :
         return f" Error:{e}"
    
