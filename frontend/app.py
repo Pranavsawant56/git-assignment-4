@@ -2,17 +2,9 @@ from flask import Flask, render_template, request
 from dotenv import load_dotenv
 import os
 import pymongo
-from dotenv import load_dotenv
-import os
-import pymongo
 import json
 
-load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI")
 
-client = pymongo.MongoClient(MONGO_URI)
-db = client["mydatabase"]
-collection = db["mycollection"]
 
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
@@ -55,6 +47,7 @@ def api():
 
     except Exception as e:
         return f"❌ Error: {e}"
+    
 @app.route('/submittodoitem', methods=['POST'])
 def submit_todo_item():
     try:
@@ -64,16 +57,6 @@ def submit_todo_item():
     except Exception as e :
         return f" Error:{e}"
    
-@app.route('/submittodoitem', methods=['POST'])
-def submit_todo_item():
-    try:
-        form_data =dict(request.form)
-        collection.insert_one(form_data)
-        return"Todo submited successfully "
-    except Exception as e :
-        return f" Error:{e}"
-   
-
 
 if __name__ == '__main__':
     app.run(debug=True) 
