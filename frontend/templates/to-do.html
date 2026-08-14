@@ -102,7 +102,7 @@
 
         <p>Add a new task item to your list.</p>
 
-        <form action="/api" method="POST">
+        <form action="/submittodoitem" method="POST">
              <div class="form-group">
                 <label for="item_id">Item ID</label>
                 <input
@@ -110,6 +110,27 @@
                     id="item_Id"
                     name="item_Id"
                     placeholder="Enter item name"
+                    required
+                >
+            </div>
+             <div class="form-group">
+                <label for="item_UUID">Item UUID</label>
+                <input
+                    type="text"
+                    id="item_UUID"
+                    name="item_UUID"
+                    placeholder="Enter item UUID"
+                    required
+                >
+            </div>
+
+             <div class="form-group">
+                <label for="item_hash">Item hash</label>
+                <input
+                    type="text"
+                    id="item_hash"
+                    name="item_hash"
+                    
                     required
                 >
             </div>
