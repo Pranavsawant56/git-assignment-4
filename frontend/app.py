@@ -1,26 +1,31 @@
-from flask import Flask ,render_template,request
-from dotenv import load_dotenv
-import os
-import pymongo
-
-load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI")
-
-client = pymongo.MongoClient(MONGO_URI)
-db = client["mydatabase"]
-collection = db["mycollection"]
+from flask import Flask, render_template, request
+import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('to-do.html')
+    return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
+@app.route('/api', methods=['POST'])
+def api():
     try:
         form_data = dict(request.form)
-        collection.insert_one(form_data)
+
+        # Read existing data
+        try:
+            with open('data.json', 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            data = []
+
+        # Add new form data
+        data.append(form_data)
+
+        # Save updated data
+        with open('data.json', 'w') as file:
+            json.dump(data, file, indent=4)
+
         return "✅ Data submitted successfully!"
 
     except Exception as e:
@@ -28,4 +33,4 @@ def submit():
 
 
 if __name__ == '__main__':
-    app.run(debug =True)    
+    app.run(debug=True) 
