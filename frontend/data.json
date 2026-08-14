@@ -1,7 +1,8 @@
 [
-   {
+  
+    {
   "name": "Pranav Sawant",
   "email": "pranav@example.com",
-  "status": "active"
+  "message": "Updated JSON data from Pranav_new"
 }
 ]
